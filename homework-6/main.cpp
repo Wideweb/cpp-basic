@@ -9,10 +9,10 @@
 // hex: 123
 // oct: 123
 void task_1() {
-    int bin = 0b1111011;
-    int dec = 123;
-    int hex = 0x7B;
-    int oct = 0173;
+    const int bin = 0b1111011;
+    const int dec = 123;
+    const int hex = 0x7B;
+    const int oct = 0173;
 
     std::cout << "bin: " << bin << std::endl;
     std::cout << "dec: " << dec << std::endl;
@@ -25,30 +25,32 @@ void task_1() {
 // \b - возврат на шаг
 // \n - перевод строки
 void task_2() {
-    char str[10] = "Hello\ba\nr";
+    const char str[10] = "Hello\ba\nr";
     std::cout << str << std::endl;
 }
 
 // Инициализируйте переменную числом 9000000000 и выведите её на экран
 void task_3() {
-    unsigned long long int v = 9'000'000'000;
+    const unsigned long long int v = 9'000'000'000;
     std::cout << v << std::endl;
 }
 
 // Инициализируйте переменную числом 18446744073709551615 и выведите её на
 // экран, так, чтобы компилятор не кидал предупреждение.
 void task_4() {
-    unsigned long long int v = 18'446'744'073'709'551'615u;
+    const unsigned long long int v = 18'446'744'073'709'551'615u;
     std::cout << v << std::endl;
 }
 
 // Сравнить два числа 18446700000000000.5 и 18446700000000000.4 на равенство,
 // ответ должен быть 0 (false).
 void task_5() {
-    char a[20] = "18446700000000000.5";
-    char b[20] = "18446700000000000.4";
+    const char a[20] = "18446700000000000.5";
+    const char b[20] = "18446700000000000.4";
 
-    for (int i = 0; i < 19; i++) {
+    const int size = 19;
+
+    for (int i = 0; i < size; i++) {
         if (a[i] != b[i]) {
             std::cout << "false" << std::endl;
             return;
@@ -70,7 +72,7 @@ void task_6() {
     std::cout << "c: " << std::endl;
     std::cin >> c;
 
-    const auto check = [](char x) { return x >= 'a' && x <= 'c'; };
+    const auto check = [](const char x) { return x >= 'a' && x <= 'c'; };
 
     if (check(a) && check(b) && check(c)) {
         std::cout << "ABC" << std::endl;
@@ -228,4 +230,4 @@ void task_12() {
     delete[] arr;
 }
 
-int main() { task_12(); }
+int main() { task_1(); }

@@ -1,15 +1,18 @@
 CXX     	= g++
 CXXFLAGS  	= -Wall -Wextra -Wpedantic -std=c++17
+ODIR		= build
 EXECUTABLE	= main
 
 main: main.o
-	$(CXX) $(CXXFLAGS) main.o -o ${EXECUTABLE}
+	mkdir -p $(ODIR)
+	$(CXX) $(CXXFLAGS) $(ODIR)/main.o -o $(ODIR)/$(EXECUTABLE)
 
 main.o: main.cpp
-	$(CXX) $(CXXFLAGS) -c main.cpp
+	mkdir -p $(ODIR)
+	$(CXX) $(CXXFLAGS) -c main.cpp -o $(ODIR)/main.o
 
 clean:
-	rm -rf *.o main
+	rm -r $(ODIR)
 
 run:
-	./${EXECUTABLE}
+	./$(ODIR)/$(EXECUTABLE)
