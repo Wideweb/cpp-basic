@@ -2,7 +2,8 @@
 
 class MinMaxStrategy : public AIStrategy {
   public:
-    int make_decision(GameBoard &board, TicTacToeSign player) const override;
+    int make_decision(const GameBoard &board,
+                      TicTacToeSign player) const override;
 
   private:
     int max_move(GameBoard board, GameBoardMove move) const;

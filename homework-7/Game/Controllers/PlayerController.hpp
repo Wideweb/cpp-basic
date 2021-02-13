@@ -4,11 +4,11 @@
 
 class PlayerController {
   protected:
-    GameBoard &m_Board;
+    const GameBoard &m_Board;
     TicTacToeSign m_Sign;
 
   public:
-    PlayerController(GameBoard &board, TicTacToeSign sign)
+    PlayerController(const GameBoard &board, TicTacToeSign sign)
         : m_Board(board), m_Sign(sign) {}
     virtual ~PlayerController() {}
 

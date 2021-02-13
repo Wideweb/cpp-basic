@@ -1,6 +1,6 @@
 #include "AIStrategy.hpp"
 
-class RandomAIStrategy : public AIStrategy {
+class RandomStrategy : public AIStrategy {
   public:
-    int make_decision(GameBoard &, TicTacToeSign) const override;
+    int make_decision(const GameBoard &, TicTacToeSign) const override;
 };

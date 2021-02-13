@@ -3,6 +3,8 @@
 #include <iostream>
 #include <stdexcept>
 
+int GameBoard::size() const { return 9; }
+
 void GameBoard::fill(GameBoardMove move) {
     TicTacToeSign &cell = m_Cells[move.position];
     if (cell != TicTacToeSign::None) {
@@ -13,7 +15,7 @@ void GameBoard::fill(GameBoardMove move) {
 }
 
 bool GameBoard::is_full() const {
-    for (int i = 0; i < 9; i++) {
+    for (int i = 0; i < size(); i++) {
         if (m_Cells[i] == TicTacToeSign::None) {
             return false;
         }
@@ -52,3 +54,7 @@ std::optional<TicTacToeSign> GameBoard::get_winner() const {
 }
 
 TicTacToeSign &GameBoard::operator[](int index) { return m_Cells[index]; }
+
+const TicTacToeSign &GameBoard::operator[](int index) const {
+    return m_Cells[index];
+}

@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-void GameBoardRender::draw(GameBoard &board) const {
+void GameBoardRender::draw(const GameBoard &board) const {
     std::cout << "     |     |     " << std::endl;
     std::cout << "  ";
     draw_sign(board[0], 1);

@@ -58,17 +58,19 @@ void TicTacToeGame::draw() {
 }
 
 void TicTacToeGame::update() {
-    GameBoardMove move = get_current_player().move();
+    const auto move = get_current_player().move();
 
-    if (move.position < 0 || move.position > 9) {
+    if (move.position < 0 || move.position >= m_Board.size()) {
         return;
-    } else if (m_Board[move.position] != TicTacToeSign::None) {
+    }
+
+    if (m_Board[move.position] != TicTacToeSign::None) {
         return;
     }
 
     m_Board.fill(move);
 
-    auto winner = m_Board.get_winner();
+    const auto winner = m_Board.get_winner();
     if (winner.has_value()) {
         m_Result = m_isFirst ? GameResult::Player1 : GameResult::Player2;
         m_Running = false;

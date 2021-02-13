@@ -11,7 +11,7 @@ class AIController : public PlayerController {
     std::unique_ptr<AIStrategy> m_Strategy;
 
   public:
-    AIController(GameBoard &board, TicTacToeSign sign,
+    AIController(const GameBoard &board, TicTacToeSign sign,
                  std::unique_ptr<AIStrategy> strategy);
     virtual ~AIController() {}
 

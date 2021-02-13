@@ -4,6 +4,6 @@
 
 class UserController : public PlayerController {
   public:
-    UserController(GameBoard &board, TicTacToeSign sign);
+    UserController(const GameBoard &board, TicTacToeSign sign);
     GameBoardMove move() const override;
 };

@@ -14,8 +14,10 @@ class GameBoard {
     TicTacToeSign m_Cells[9] = {TicTacToeSign::None};
 
   public:
+    int size() const;
     void fill(GameBoardMove move);
     bool is_full() const;
     std::optional<TicTacToeSign> get_winner() const;
     TicTacToeSign &operator[](int index);
+    const TicTacToeSign &operator[](int index) const;
 };

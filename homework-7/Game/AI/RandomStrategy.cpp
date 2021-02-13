@@ -2,10 +2,9 @@
 
 #include <stdexcept>
 
-int RandomAIStrategy::make_decision(GameBoard &board, TicTacToeSign) const {
-    for (int i = 0; i < 9; i++) {
-        auto &cell = board[i];
-        if (cell == TicTacToeSign::None) {
+int RandomStrategy::make_decision(const GameBoard &board, TicTacToeSign) const {
+    for (int i = 0; i < board.size(); i++) {
+        if (board[i] == TicTacToeSign::None) {
             return i;
         }
     }

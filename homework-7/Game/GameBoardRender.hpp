@@ -4,7 +4,7 @@
 
 class GameBoardRender {
   public:
-    void draw(GameBoard &board) const;
+    void draw(const GameBoard &board) const;
 
   private:
     void draw_sign(TicTacToeSign sign, int index) const;

@@ -3,11 +3,11 @@
 #include <limits>
 #include <stdexcept>
 
-int MinMaxStrategy::make_decision(GameBoard &board,
+int MinMaxStrategy::make_decision(const GameBoard &board,
                                   TicTacToeSign player) const {
     int best_score = std::numeric_limits<int>::min();
     int best_position = 0;
-    for (int i = 0; i < 9; i++) {
+    for (int i = 0; i < board.size(); i++) {
         if (board[i] != TicTacToeSign::None) {
             continue;
         }
@@ -35,7 +35,7 @@ int MinMaxStrategy::max_move(GameBoard board, GameBoardMove move) const {
     }
 
     int worst_score = std::numeric_limits<int>::max();
-    for (int i = 0; i < 9; i++) {
+    for (int i = 0; i < board.size(); i++) {
         if (board[i] != TicTacToeSign::None) {
             continue;
         }
@@ -62,7 +62,7 @@ int MinMaxStrategy::min_move(GameBoard board, GameBoardMove move) const {
     }
 
     int best_score = std::numeric_limits<int>::min();
-    for (int i = 0; i < 9; i++) {
+    for (int i = 0; i < board.size(); i++) {
         if (board[i] != TicTacToeSign::None) {
             continue;
         }

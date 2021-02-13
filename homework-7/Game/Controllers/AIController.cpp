@@ -4,7 +4,7 @@
 #include <iostream>
 #include <thread>
 
-AIController::AIController(GameBoard &board, TicTacToeSign sign,
+AIController::AIController(const GameBoard &board, TicTacToeSign sign,
                            std::unique_ptr<AIStrategy> strategy)
     : PlayerController(board, sign), m_Strategy(std::move(strategy)) {}
 
