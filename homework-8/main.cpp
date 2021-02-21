@@ -1,6 +1,7 @@
 #include <iostream>
 
 class Rect {
+  private:
     unsigned int w;
     unsigned int h;
 
