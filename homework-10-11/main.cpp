@@ -1,6 +1,8 @@
 #include "Stack.hpp"
 #include <iostream>
 
+extern int counter;
+
 // simple template type test
 void test1() {
     Stack<int> stack;
@@ -138,6 +140,20 @@ void test7() {
     std::cout << "Test 7 Passed" << std::endl;
 }
 
+// memory test
+void test8() {
+    {
+        Stack<int> stack;
+        stack.push(1);
+        stack.push(2);
+        stack.push(3);
+    }
+
+    assert(counter == 0 && "Test 8 failed.");
+
+    std::cout << "Test 8 Passed" << std::endl;
+}
+
 int main() {
     test1();
     test2();
@@ -146,6 +162,7 @@ int main() {
     test5();
     test6();
     test7();
+    test8();
 
     std::cout << "All Tests Passed!" << std::endl;
 }

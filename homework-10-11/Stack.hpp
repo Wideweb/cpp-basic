@@ -1,15 +1,22 @@
 #pragma once
 
+#include <memory>
 #include <utility>
+
+static int counter = 0;
 
 template <typename T> class Stack {
   private:
     struct StackItem {
         T data;
-        StackItem *next;
+        std::shared_ptr<StackItem> next;
+
+        StackItem() { counter++; }
+
+        ~StackItem() { counter--; }
     };
 
-    StackItem *m_Top;
+    std::shared_ptr<StackItem> m_Top;
 
   public:
     Stack() : m_Top(nullptr) {}
@@ -27,22 +34,21 @@ template <typename T> class Stack {
 
         T data = std::move(m_Top->data);
 
-        auto *item = m_Top;
+        auto item = m_Top;
         m_Top = m_Top->next;
-        delete item;
 
         return data;
     }
 
     template <typename... Args> void emplace_back(Args &&...args) {
-        StackItem *item = new StackItem;
+        auto item = std::make_shared<StackItem>();
         item->data = T(std::forward<Args>(args)...);
         item->next = m_Top;
         m_Top = item;
     }
 
     void push(T data) {
-        StackItem *item = new StackItem;
+        auto item = std::make_shared<StackItem>();
         item->data = std::move(data);
         item->next = m_Top;
         m_Top = item;
@@ -63,7 +69,7 @@ template <typename T> class Stack {
 
         clear();
         Stack tmp;
-        StackItem *current = other.m_Top;
+        auto current = other.m_Top;
         while (current != nullptr) {
             T data = current->data;
             tmp.push(data);
