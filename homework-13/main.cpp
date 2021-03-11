@@ -147,7 +147,7 @@ class BMP {
                 float r =
                     static_cast<float>((wbuffer[i] & 0x0F00) >> 8) / 127.0f;
                 float a =
-                    static_cast<float>((wbuffer[i] & 0xF000) >> 16) / 127.0f;
+                    static_cast<float>((wbuffer[i] & 0xF000) >> 12) / 127.0f;
 
                 pixels.push_back({r, g, b, a});
             }
