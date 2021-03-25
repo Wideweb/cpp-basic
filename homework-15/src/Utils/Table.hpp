@@ -83,13 +83,6 @@ class Table {
 
 class Helper {
   public:
-    template <typename T> std::string static toString(T value) {
-        std::ostringstream ss;
-        ss << value;
-        std::string str(ss.str());
-        return str;
-    }
-
     void static printTable(const std::string &title,
                            const std::vector<Book> &books, int minWidth) {
         std::cout << std::endl;
@@ -107,7 +100,7 @@ class Helper {
         for (const auto &book : books) {
             index++;
             std::vector<std::string> row;
-            row.push_back(toString(index));
+            row.push_back(Utils::toString(index));
             row.push_back(book.name);
             table.addRow(row);
         }
@@ -132,7 +125,7 @@ class Helper {
         for (const auto &member : members) {
             index++;
             std::vector<std::string> row;
-            row.push_back(toString(index));
+            row.push_back(Utils::toString(index));
             row.push_back(member.name);
             table.addRow(row);
         }

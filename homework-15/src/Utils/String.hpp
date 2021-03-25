@@ -1,8 +1,6 @@
 ﻿#pragma once
 
 #include <algorithm>
-#include <codecvt>
-#include <locale>
 #include <sstream>
 #include <string>
 
@@ -14,12 +12,19 @@ class Utils {
     // отнять количество двухбайтовых символов.
     int static stringLength(const std::string &s) {
         const int twoBytesChars =
-            std::count_if(s.begin(), s.end(), [](char c) -> bool {
+            std::count_if(s.cbegin(), s.cend(), [](char c) -> bool {
                 // Многобайтовые символы начинаются с 10xxxxxx в двоичном
                 // формате.
                 return (c & 0xC0) == 0x80;
             });
 
         return (s.length() - twoBytesChars);
+    }
+
+    template <typename T> std::string static toString(T value) {
+        std::ostringstream ss;
+        ss << value;
+        std::string str(ss.str());
+        return str;
     }
 };
