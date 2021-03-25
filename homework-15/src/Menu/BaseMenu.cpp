@@ -10,9 +10,9 @@ BaseMenu::BaseMenu(Context context, std::string title)
 BaseMenu::~BaseMenu() {}
 
 void BaseMenu::render() {
-    int freeSpace = c_ScreenWidth - Utils::stringLength(m_Title);
-    int paddingLeft = freeSpace / 2;
-    int paddingRight = freeSpace - paddingLeft;
+    const int freeSpace = c_ScreenWidth - Utils::stringLength(m_Title);
+    const int paddingLeft = freeSpace / 2;
+    const int paddingRight = freeSpace - paddingLeft;
 
     std::cout << std::endl;
 

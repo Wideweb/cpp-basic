@@ -13,7 +13,7 @@ class Utils {
     // определить длину строки в символах небюходимо от общего количества байт
     // отнять количество двухбайтовых символов.
     int static stringLength(const std::string &s) {
-        int twoBytesChars =
+        const int twoBytesChars =
             std::count_if(s.begin(), s.end(), [](char c) -> bool {
                 // Многобайтовые символы начинаются с 10xxxxxx в двоичном
                 // формате.

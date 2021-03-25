@@ -23,7 +23,7 @@ class Table {
         }
 
         for (unsigned int i = 0; i < row.size(); i++) {
-            int size = Utils::stringLength(row[i]) + m_CellPadding;
+            const int size = Utils::stringLength(row[i]) + m_CellPadding;
             if (m_ColumnWidth[i] < size) {
                 m_ColumnWidth[i] = size;
             }
@@ -43,7 +43,7 @@ class Table {
             rowWidth += columnAddWidth * m_ColumnWidth.size();
         }
 
-        int remainingSpace = minWidth - rowWidth;
+        const int remainingSpace = minWidth - rowWidth;
         rowWidth = minWidth;
 
         std::cout << std::string(rowWidth, '-');
@@ -65,9 +65,9 @@ class Table {
 
   private:
     void printText(std::string text, int width) {
-        int freeSpace = width - Utils::stringLength(text);
-        int paddingLeft = freeSpace / 2;
-        int paddingRight = freeSpace - paddingLeft;
+        const int freeSpace = width - Utils::stringLength(text);
+        const int paddingLeft = freeSpace / 2;
+        const int paddingRight = freeSpace - paddingLeft;
 
         for (int i = 0; i < paddingLeft; i++) {
             std::cout << " ";

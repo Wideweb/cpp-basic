@@ -1,10 +1,11 @@
 ﻿#pragma once
 
+#include "../DataBase.hpp"
+
 #include <iostream>
 #include <string>
 
-struct Booking {
-    unsigned int id;
+struct Booking : public Entity {
     unsigned int memberId;
     unsigned int bookId;
 };

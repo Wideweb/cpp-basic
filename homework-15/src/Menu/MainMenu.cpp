@@ -40,7 +40,7 @@ BaseMenu *MainMenu::findMember() {
     std::string memberName;
     getInput(memberName, "Введите имя читателя:");
 
-    auto member = LibService::get().getMember(memberName);
+    const auto member = LibService::get().getMember(memberName);
 
     if (!member.has_value()) {
         std::cout << "Читатель не был найден" << std::endl;
@@ -85,7 +85,7 @@ BaseMenu *MemberManagementMenu::update(bool &) {
 }
 
 void MemberManagementMenu::printAll() {
-    auto members = LibService::get().getMembers();
+    const auto &members = LibService::get().getMembers();
 
     if (members.empty()) {
         std::cout << "В системе нет читателей" << std::endl;
@@ -160,7 +160,7 @@ BaseMenu *BookManagementMenu::update(bool &) {
 }
 
 void BookManagementMenu::printAll() {
-    auto books = LibService::get().getBooks();
+    const auto &books = LibService::get().getBooks();
 
     if (books.empty()) {
         std::cout << "В системе нет книг" << std::endl;
@@ -233,7 +233,7 @@ BaseMenu *MemberBooksMenu::update(bool &) {
 }
 
 void MemberBooksMenu::printAll() {
-    auto memberBooks = LibService::get().getMemberBooks(m_Context.member);
+    const auto memberBooks = LibService::get().getMemberBooks(m_Context.member);
 
     if (memberBooks.empty()) {
         std::cout << "У читателя нет книг" << std::endl;
@@ -244,7 +244,7 @@ void MemberBooksMenu::printAll() {
 }
 
 void MemberBooksMenu::takeBook() {
-    auto availableBooks = LibService::get().getAvailableBooks();
+    const auto availableBooks = LibService::get().getAvailableBooks();
 
     if (availableBooks.empty()) {
         std::cout << "Книг нет в наличии" << std::endl;
@@ -274,7 +274,7 @@ void MemberBooksMenu::takeBook() {
 void MemberBooksMenu::returnBook() {
     auto &member = m_Context.member;
 
-    auto memberBooks = LibService::get().getMemberBooks(m_Context.member);
+    const auto memberBooks = LibService::get().getMemberBooks(m_Context.member);
 
     if (memberBooks.empty()) {
         std::cout << "У читателя нет книг" << std::endl;

@@ -27,18 +27,18 @@ class LibService {
 
     std::vector<Book> getBooks();
     std::vector<Book> getAvailableBooks();
-    void addBook(Book book);
-    void removeBook(Book book);
+    void addBook(const Book &book);
+    void removeBook(const Book &book);
     void removeBook(unsigned int index);
 
     std::vector<Member> getMembers();
     std::optional<Member> getMember(const std::string &name);
-    void addMember(Member member);
-    void removeMember(Member member);
+    void addMember(const Member &member);
+    void removeMember(const Member &member);
     void removeMember(unsigned int index);
-    std::vector<Book> getMemberBooks(Member member);
-    void takeBook(Member member, Book book);
-    void returnBook(Member member, Book book);
+    std::vector<Book> getMemberBooks(const Member &member);
+    void takeBook(const Member &member, const Book &book);
+    void returnBook(const Member &member, const Book &book);
 
     static LibService &get() { return s_Instance; }
 };

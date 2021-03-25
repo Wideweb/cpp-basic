@@ -3,14 +3,19 @@
 #include <algorithm>
 #include <filesystem>
 #include <fstream>
-#include <iostream>
 #include <iterator>
-#include <sstream>
 #include <stdexcept>
 #include <string>
+#include <type_traits>
 #include <vector>
 
-template <typename TEntity> class DataBase {
+struct Entity {
+    unsigned int id;
+};
+
+template <typename TEntity,
+          typename = std::enable_if_t<std::is_base_of_v<Entity, TEntity>>>
+class DataBase {
   private:
     std::vector<TEntity> m_Entities;
     std::string m_FilePath;
@@ -18,7 +23,6 @@ template <typename TEntity> class DataBase {
 
   public:
     DataBase(const std::string &file) : m_FilePath(file), m_LastId(0) {}
-
     ~DataBase() {}
 
     void add(TEntity entity) {
@@ -42,21 +46,8 @@ template <typename TEntity> class DataBase {
             return false;
         }
 
-        m_Entities[it - m_Entities.begin()] = entity;
-
-        flush();
-
-        return true;
-    }
-
-    bool remove(unsigned int index) {
-        fetch();
-
-        if (index >= m_Entities.size()) {
-            return false;
-        }
-
-        m_Entities.erase(m_Entities.begin() + index);
+        int index = std::distance(m_Entities.begin(), it);
+        m_Entities[index] = entity;
 
         flush();
 
@@ -73,11 +64,6 @@ template <typename TEntity> class DataBase {
         flush();
 
         return true;
-    }
-
-    const TEntity &get(unsigned int index) {
-        fetch();
-        return m_Entities[index];
     }
 
     const std::vector<TEntity> &getAll() {
