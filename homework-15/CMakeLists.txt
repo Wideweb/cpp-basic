@@ -1,0 +1,30 @@
+cmake_minimum_required(VERSION 3.17)
+
+project(App VERSION 1.0)
+
+add_compile_options(
+    -Werror
+    -pedantic-errors
+
+    -Wall
+    -Wextra
+    -Wpedantic
+)
+
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
+
+set(OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_BINDIR})
+
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${OUTPUT_DIRECTORY})
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${OUTPUT_DIRECTORY})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_DIRECTORY})
+
+file(GLOB_RECURSE SOURCE_EXE ${PROJECT_SOURCE_DIR}/src/*.cpp)
+
+add_executable(${PROJECT_NAME} ${SOURCE_EXE})
+
+target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/src)
+
+file(COPY ${PROJECT_SOURCE_DIR}/resources DESTINATION ${OUTPUT_DIRECTORY})
+
