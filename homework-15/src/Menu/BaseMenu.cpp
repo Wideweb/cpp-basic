@@ -4,9 +4,10 @@
 
 #include <iostream>
 #include <limits>
+#include <utility>
 
 BaseMenu::BaseMenu(Context context, std::string title)
-    : m_Context(context), m_Title(title) {}
+    : m_Context(context), m_Title(std::move(title)) {}
 BaseMenu::~BaseMenu() {}
 
 void BaseMenu::render() {

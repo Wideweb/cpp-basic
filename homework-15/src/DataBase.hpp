@@ -7,6 +7,7 @@
 #include <stdexcept>
 #include <string>
 #include <type_traits>
+#include <utility>
 #include <vector>
 
 struct Entity {
@@ -22,7 +23,7 @@ class DataBase {
     unsigned int m_LastId;
 
   public:
-    DataBase(const std::string &file) : m_FilePath(file), m_LastId(0) {}
+    DataBase(std::string file) : m_FilePath(std::move(file)), m_LastId(0) {}
     ~DataBase() {}
 
     void add(TEntity entity) {
@@ -30,7 +31,7 @@ class DataBase {
 
         m_LastId++;
         entity.id = m_LastId;
-        m_Entities.push_back(entity);
+        m_Entities.push_back(std::move(entity));
 
         flush();
     }
@@ -73,8 +74,6 @@ class DataBase {
 
   private:
     void fetch() {
-        m_Entities.clear();
-
         if (!std::filesystem::exists(m_FilePath)) {
             throw std::invalid_argument(
                 "Данные не были загружены (файл данных не найден)");
